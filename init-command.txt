@@ -1,0 +1,8 @@
+# command to init a new project
+
+npm init --yes
+npm install typescript
+tsc --init
+npm i express morgan helmet cors compression
+npm i @types/node @types/express nodemon typescript -D
+npm i @types/compression @types/morgan @types/helmet -D
