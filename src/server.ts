@@ -4,9 +4,9 @@ import helmet from 'helmet';
 import compression from 'compression';
 import cors from 'cors';
 
-import indexRoutes from './routes/indexRoutes';
-import exampleRoutes from './routes/exampleRoutes';
+import v1Routes from './routes/v1/v1Routes';
 import errorMiddleware from './middleware/error.middleware';
+import HttpException from './exceptions/httpException';
 
 class Server {
 
@@ -35,8 +35,10 @@ class Server {
     }
 
     routes() {
-        this.app.use(indexRoutes);
-        this.app.use(exampleRoutes);
+        this.app.use('/api/v1', v1Routes);
+        this.app.get('*', (_req, _res) => {
+            throw new HttpException(404, 'Latest Api in /api/v1')
+        });
     }
 
     start() {
