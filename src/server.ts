@@ -21,8 +21,10 @@ class Server {
     config() {
         // settings
         this.app.set('port', process.env.PORT || 3000);
-
-        // middlewares
+        this.initializeMiddlewares();
+    }
+    
+    initializeMiddlewares() {
         this.app.use(morgan('dev'));
         this.app.use(express.json());
         this.app.use(express.urlencoded({extended: false}));
