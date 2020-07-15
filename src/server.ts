@@ -6,6 +6,7 @@ import cors from 'cors';
 
 import indexRoutes from './routes/indexRoutes';
 import exampleRoutes from './routes/exampleRoutes';
+import errorMiddleware from './middleware/error.middleware';
 
 class Server {
 
@@ -28,6 +29,7 @@ class Server {
         this.app.use(helmet());
         this.app.use(compression());
         this.app.use(cors());
+        this.app.use(errorMiddleware);
     }
 
     routes() {
